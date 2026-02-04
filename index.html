@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAILY CHICKEN SHOP | Real-time Update</title>
+    <title>DAILY CHICKEN SHOP | Varanasi</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --main-red: #cc0000; --dark-gray: #1a1a1a; --whatsapp-green: #25D366; --gold: #ffd700; }
@@ -15,102 +15,133 @@
             50% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
             100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
         }
-        .blink-name { font-family: 'Oswald', sans-serif; font-size: 2.5rem; animation: rainbowBlink 3s infinite linear; text-align: center; padding: 20px; text-transform: uppercase; }
+        .blink-name { font-family: 'Oswald', sans-serif; font-size: 2.5rem; animation: rainbowBlink 3s infinite linear; text-align: center; padding: 15px; text-transform: uppercase; }
 
-        header { background: var(--dark-gray); color: white; border-bottom: 5px solid var(--main-red); }
+        header { background: var(--dark-gray); color: white; border-bottom: 5px solid var(--main-red); text-align: center; padding-bottom: 10px; }
+        .tagline-top { color: var(--gold); text-align: center; font-style: italic; font-size: 1.1rem; margin-top: -5px; }
+
+        .offers-bar { background: var(--main-red); color: white; padding: 10px; overflow: hidden; font-weight: bold; border-bottom: 2px solid var(--gold); }
+        .marquee { display: inline-block; animation: scroll 15s linear infinite; white-space: nowrap; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
         .container { max-width: 1100px; margin: auto; padding: 20px; }
-        
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; padding-bottom: 15px; }
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; padding-bottom: 15px; border: 1px solid #ddd; position: relative; }
         .card img { width: 100%; height: 250px; object-fit: cover; }
-        .price { font-size: 1.8rem; color: var(--main-red); font-weight: bold; }
-        .old-price { text-decoration: line-through; color: gray; margin-right: 10px; }
         
-        .admin-box { background: #fff; margin-top: 40px; padding: 20px; border-radius: 10px; border: 2px solid #ddd; }
-        .hidden { display: none; }
+        .sunday-badge { position: absolute; top: 10px; left: 10px; background: orange; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 0.9rem; animation: pulse 1s infinite; z-index: 10; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        .btn-whatsapp { background: var(--whatsapp-green); color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; display: block; margin: 10px; transition: 0.3s; cursor: pointer; border:none; }
+        .btn-whatsapp:hover { background: #128C7E; transform: translateY(-2px); }
+
+        section { background: white; padding: 25px; margin-top: 25px; border-radius: 15px; border-left: 8px solid var(--main-red); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .admin-box { background: #fff; margin-top: 50px; padding: 25px; border-radius: 15px; border: 2px solid #ddd; }
         input { padding: 8px; margin: 5px; border: 1px solid #ccc; border-radius: 5px; }
-        .btn { background: var(--main-red); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+        footer { background: var(--dark-gray); color: white; text-align: center; padding: 40px 20px; margin-top: 50px; border-top: 5px solid var(--main-red); }
+        .footer-contact { font-size: 1.2rem; font-weight: bold; color: white; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <header>
     <h1 class="blink-name">DAILY CHICKEN SHOP</h1>
+    <p class="tagline-top">"शुद्धता और ताज़गी का वादा!"</p>
 </header>
+
+<div class="offers-bar">
+    <div class="marquee" id="live-offer">Loading...</div>
+</div>
 
 <div class="container">
     <div id="display-grid" class="card-grid"></div>
 
-    <div class="admin-box">
-        <h3 style="text-align:center; color:var(--main-red);">🔐 Manager Control</h3>
-        <div id="login-area" style="text-align:center; margin-top:10px;">
-            <input type="password" id="pass" placeholder="Enter Password">
-            <button class="btn" onclick="checkPass()">Login</button>
-        </div>
+    <section>
+        <h2>Hamare Baare Mein</h2>
+        <p>Daily Chicken Shop वाराणसी का सबसे भरोसेमंद नाम है। हम आपको हर दिन ताज़ा और शुद्ध चिकन पहुँचाते हैं।</p>
+        <p style="margin-top:10px;">📍 <b>Pata:</b> Varanasi, Uttar Pradesh</p>
+    </section>
 
-        <div id="controls" class="hidden">
-            <h4>Update Items Directly:</h4>
+    <div class="admin-box">
+        <h3 style="text-align:center; color: var(--main-red);">🔐 Manager Dashboard</h3>
+        <div id="login-area" style="text-align:center; margin-top:10px;">
+            <input type="password" id="pass" placeholder="Password Dalein">
+            <button onclick="checkPass()" style="padding: 8px 15px; cursor:pointer; background:var(--main-red); color:white; border:none; border-radius:5px;">Login</button>
+        </div>
+        <div id="controls" class="hidden" style="display:none;">
+            <h4>Update Sunday Offer:</h4>
+            <input type="text" id="offer-input" placeholder="Sunday Offer Text" style="width:80%;">
+            <button onclick="saveOffer()" style="background:orange; padding:8px; border:none; border-radius:5px; cursor:pointer;">Update Offer</button>
+            <h4 style="margin-top:20px;">Rates Update:</h4>
             <div id="admin-list"></div>
-            <button class="btn" style="background:#333; margin-top:10px;" onclick="location.reload()">Logout & Refresh</button>
+            <button onclick="location.reload()" style="margin-top:15px; padding:5px 10px; cursor:pointer;">Logout</button>
         </div>
     </div>
 </div>
 
+<footer>
+    <p style="color: var(--gold); font-size: 1.4rem; font-family: 'Oswald', sans-serif;">"ताज़गी ऐसी, जो हर दिल जीत ले!"</p>
+    <p class="footer-contact">📞 Call/WhatsApp: +91 9123547766</p>
+    <p style="margin-top:15px; font-size: 0.8rem; opacity: 0.6;">&copy; 2026 Daily Chicken Shop Varanasi.</p>
+</footer>
+
 <script>
-    const WA_NUMBER = "919123547766";
+    const MY_PHONE = "919123547766"; 
     const PASS = "shop123";
 
-    // Default data (Sirf pehli baar ke liye)
-    const initialItems = [
+    const today = new Date();
+    const isSunday = (today.getDay() === 0);
+
+    const initialData = [
         { id: 1, name: "White Chicken", old: 220, price: 190, img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/white%20chicken.jpg" },
-        { id: 2, name: "Desi Rooster", old: 320, price: 280, img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/Red%20chicken.png" },
-        { id: 3, name: "Fresh Eggs", old: 10, price: 8, img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/Brown-eggs.jpg" }
+        { id: 2, name: "Red Chicken", old: 320, price: 280, img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/Red%20chicken.png" },
+        { id: 3, name: "Fresh Farm Eggs", old: 10, price: 8, img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/Brown-eggs.jpg" }
     ];
 
-    // LocalStorage se data uthana (Agar phone mein update kiya hai toh wahi dikhega)
-    let shopData = JSON.parse(localStorage.getItem('myShopData')) || initialItems;
+    let items = JSON.parse(localStorage.getItem('shop_v5')) || initialData;
+    let sunOffer = localStorage.getItem('sun_off_v5') || "Sunday Special: 2kg Chicken par 6 Eggs FREE! 🐔🥚";
 
-    function renderShop() {
+    function render() {
+        document.getElementById('live-offer').innerText = isSunday ? sunOffer : "Daily Fresh Chicken Available! Best Rates in Varanasi.";
+        
         const grid = document.getElementById('display-grid');
         const adminList = document.getElementById('admin-list');
         grid.innerHTML = ""; adminList.innerHTML = "";
 
-        shopData.forEach((item, index) => {
-            // Customer View
+        items.forEach((item, index) => {
+            let msg = isSunday ? `Sunday Special Offer ke saath मुझे ${item.name} order karna hai.` : `Mujhe fresh ${item.name} order karna hai.`;
+            const waLink = `https://wa.me/${MY_PHONE}?text=${encodeURIComponent('नमस्ते! ' + msg + '\nरेट: ₹' + item.price)}`;
+
             grid.innerHTML += `
                 <div class="card">
+                    ${isSunday ? '<div class="sunday-badge">SUNDAY धमाका</div>' : ''}
                     <img src="${item.img}">
-                    <h3>${item.name}</h3>
-                    <p><span class="old-price">₹${item.old}</span><span class="price">₹${item.price}</span></p>
-                    <a href="https://wa.me/${WA_NUMBER}?text=Order:${item.name}" class="btn" style="display:inline-block; text-decoration:none; margin-top:10px; background:#25D366;">Order on WhatsApp</a>
+                    <h3 style="margin-top:10px;">${item.name}</h3>
+                    <p style="margin:5px 0;"><span style="text-decoration:line-through; color:gray;">₹${item.old}</span> <b style="color:red; font-size:1.6rem;">₹${item.price}</b></p>
+                    <a href="${waLink}" class="btn-whatsapp" target="_blank">Order on WhatsApp</a>
                 </div>`;
 
-            // Admin View
             adminList.innerHTML += `
-                <div style="padding:10px; border-bottom:1px solid #eee;">
-                    <span>${item.name}</span> | 
-                    MRP: <input type="number" value="${item.old}" onchange="updateData(${index}, 'old', this.value)" style="width:60px">
-                    Rate: <input type="number" value="${item.price}" onchange="updateData(${index}, 'price', this.value)" style="width:60px">
+                <div style="padding:8px; border-bottom:1px solid #eee;">
+                    <b>${item.name}</b>: <input type="number" value="${item.old}" onchange="update(${index}, 'old', this.value)" style="width:55px;">
+                    <input type="number" value="${item.price}" onchange="update(${index}, 'price', this.value)" style="width:55px;">
                 </div>`;
         });
     }
 
-    function updateData(index, field, value) {
-        shopData[index][field] = value;
-        localStorage.setItem('myShopData', JSON.stringify(shopData));
-        renderShop(); // Bina refresh kiye turant update
-    }
-
+    function update(i, field, val) { items[i][field] = val; localStorage.setItem('shop_v5', JSON.stringify(items)); render(); }
+    function saveOffer() { sunOffer = document.getElementById('offer-input').value; localStorage.setItem('sun_off_v5', sunOffer); render(); alert("Offer Updated!"); }
+    
     function checkPass() {
         if(document.getElementById('pass').value === PASS) {
-            document.getElementById('controls').classList.remove('hidden');
-            document.getElementById('login-area').classList.add('hidden');
-            renderShop();
-        } else { alert("Wrong Password"); }
+            document.getElementById('controls').style.display = "block";
+            document.getElementById('login-area').style.display = "none";
+            render();
+        } else { alert("Galat Password!"); }
     }
 
-    window.onload = renderShop;
+    window.onload = render;
 </script>
-
 </body>
 </html>
