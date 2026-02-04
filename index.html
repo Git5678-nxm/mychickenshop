@@ -10,44 +10,52 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Roboto', sans-serif; background: #f4f4f4; }
         
-        @keyframes rainbowBlink {
-            0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
-            50% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
-            100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
-        }
+        /* Design & Animations */
         .blink-name { font-family: 'Oswald', sans-serif; font-size: 2.5rem; animation: rainbowBlink 3s infinite linear; text-align: center; padding: 15px; text-transform: uppercase; }
+        @keyframes rainbowBlink { 0% { color: #ff0000; } 50% { color: #00ff00; } 100% { color: #ff0000; } }
 
         header { background: var(--dark-gray); color: white; border-bottom: 5px solid var(--main-red); text-align: center; padding-bottom: 10px; }
-        .tagline-top { color: var(--gold); text-align: center; font-style: italic; font-size: 1.1rem; margin-top: -5px; }
+        .tagline { color: var(--gold); font-style: italic; font-size: 1.1rem; }
 
-        .offers-bar { background: var(--main-red); color: white; padding: 10px; overflow: hidden; font-weight: bold; border-bottom: 2px solid var(--gold); }
+        .btn-gallery { background: var(--dark-gray); color: var(--gold); padding: 12px; border-radius: 50px; text-align: center; display: block; margin: 10px auto; width: 80%; max-width: 250px; text-decoration: none; font-weight: bold; border: 2px solid var(--gold); cursor: pointer; }
+
+        .offers-bar { background: var(--main-red); color: white; padding: 10px; overflow: hidden; font-weight: bold; }
         .marquee { display: inline-block; animation: scroll 15s linear infinite; white-space: nowrap; }
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
         .container { max-width: 1100px; margin: auto; padding: 20px; }
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; padding-bottom: 15px; border: 1px solid #ddd; position: relative; }
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; padding-bottom: 15px; position: relative; border: 1px solid #ddd; }
         .card img { width: 100%; height: 250px; object-fit: cover; }
         
-        .sunday-badge { position: absolute; top: 10px; left: 10px; background: orange; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 0.9rem; animation: pulse 1s infinite; z-index: 10; }
+        .sunday-badge { position: absolute; top: 10px; left: 10px; background: orange; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; z-index: 5; animation: pulse 1s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-        .btn-whatsapp { background: var(--whatsapp-green); color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; display: block; margin: 10px; transition: 0.3s; cursor: pointer; border:none; }
-        .btn-whatsapp:hover { background: #128C7E; transform: translateY(-2px); }
+        .btn-whatsapp { background: var(--whatsapp-green); color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; display: block; margin: 10px; }
 
-        section { background: white; padding: 25px; margin-top: 25px; border-radius: 15px; border-left: 8px solid var(--main-red); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .admin-box { background: #fff; margin-top: 50px; padding: 25px; border-radius: 15px; border: 2px solid #ddd; }
-        input { padding: 8px; margin: 5px; border: 1px solid #ccc; border-radius: 5px; }
+        /* Modal Gallery */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }
+        .modal-content { background: white; margin: 10% auto; padding: 20px; width: 90%; max-width: 500px; border-radius: 15px; position: relative; text-align: center; }
+        .close { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: red; }
+
+        /* Admin Section */
+        .admin-box { background: #fff; margin-top: 50px; padding: 25px; border-radius: 15px; border: 3px solid #333; }
+        .admin-section { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
+        input { padding: 8px; margin: 5px 0; width: 100%; border: 1px solid #ccc; border-radius: 5px; }
+        .btn-admin { padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; color: white; }
+        .btn-save { background: var(--main-red); }
+        .btn-add { background: #28a745; margin-top: 10px; }
+        .btn-del { background: #dc3545; padding: 5px; font-size: 0.8rem; }
 
         footer { background: var(--dark-gray); color: white; text-align: center; padding: 40px 20px; margin-top: 50px; border-top: 5px solid var(--main-red); }
-        .footer-contact { font-size: 1.2rem; font-weight: bold; color: white; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <header>
     <h1 class="blink-name">DAILY CHICKEN SHOP</h1>
-    <p class="tagline-top">"शुद्धता और ताज़गी का वादा!"</p>
+    <p class="tagline">"शुद्धता और ताज़गी का वादा!"</p>
+    <div class="btn-gallery" onclick="openModal()">📸 View Shop Photo & Video</div>
 </header>
 
 <div class="offers-bar">
@@ -57,90 +65,131 @@
 <div class="container">
     <div id="display-grid" class="card-grid"></div>
 
-    <section>
-        <h2>Hamare Baare Mein</h2>
-        <p>Daily Chicken Shop वाराणसी का सबसे भरोसेमंद नाम है। हम आपको हर दिन ताज़ा और शुद्ध चिकन पहुँचाते हैं।</p>
-        <p style="margin-top:10px;">📍 <b>Pata:</b> Varanasi, Uttar Pradesh</p>
-    </section>
+    <div id="shopModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="color:var(--main-red);">Shop Gallery</h2>
+            <img id="modal-photo" src="" style="width:100%; border-radius:10px; margin: 15px 0;">
+            <iframe id="modal-video" width="100%" height="250" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
 
     <div class="admin-box">
         <h3 style="text-align:center; color: var(--main-red);">🔐 Manager Dashboard</h3>
         <div id="login-area" style="text-align:center; margin-top:10px;">
-            <input type="password" id="pass" placeholder="Password Dalein">
-            <button onclick="checkPass()" style="padding: 8px 15px; cursor:pointer; background:var(--main-red); color:white; border:none; border-radius:5px;">Login</button>
+            <input type="password" id="pass" placeholder="Password Dalein" style="width: 200px;">
+            <button onclick="checkPass()" class="btn-admin btn-save">Login</button>
         </div>
-        <div id="controls" class="hidden" style="display:none;">
-            <h4>Update Sunday Offer:</h4>
-            <input type="text" id="offer-input" placeholder="Sunday Offer Text" style="width:80%;">
-            <button onclick="saveOffer()" style="background:orange; padding:8px; border:none; border-radius:5px; cursor:pointer;">Update Offer</button>
-            <h4 style="margin-top:20px;">Rates Update:</h4>
+
+        <div id="controls" style="display:none;">
+            <div class="admin-section">
+                <h4>📢 Update Shop Info:</h4>
+                <input type="text" id="edit-sun-offer" placeholder="Sunday Offer Text">
+                <input type="text" id="edit-photo" placeholder="Shop Photo Link (GitHub)">
+                <input type="text" id="edit-video" placeholder="YouTube Embed Link">
+                <button onclick="saveSettings()" class="btn-admin btn-save">Save Settings</button>
+            </div>
+
+            <div class="admin-section">
+                <h4>➕ Add New Item:</h4>
+                <input type="text" id="new-name" placeholder="Item Name">
+                <input type="number" id="new-old" placeholder="Old Rate">
+                <input type="number" id="new-price" placeholder="New Rate">
+                <input type="text" id="new-img" placeholder="Image Link">
+                <button onclick="addItem()" class="btn-admin btn-add">Add to Shop</button>
+            </div>
+
+            <h4>📦 Current Items (Rate Update/Delete):</h4>
             <div id="admin-list"></div>
-            <button onclick="location.reload()" style="margin-top:15px; padding:5px 10px; cursor:pointer;">Logout</button>
+            
+            <button onclick="location.reload()" class="btn-admin" style="background:#444; margin-top:20px; width:100%;">Logout & Refresh</button>
         </div>
     </div>
 </div>
 
 <footer>
-    <p style="color: var(--gold); font-size: 1.4rem; font-family: 'Oswald', sans-serif;">"ताज़गी ऐसी, जो हर दिल जीत ले!"</p>
-    <p class="footer-contact">📞 Call/WhatsApp: +91 9123547766</p>
-    <p style="margin-top:15px; font-size: 0.8rem; opacity: 0.6;">&copy; 2026 Daily Chicken Shop Varanasi.</p>
+    <p style="color: var(--gold); font-size: 1.2rem;">"ताज़गी ऐसी, जो हर दिल जीत ले!"</p>
+    <p>📞 Order: +91 9123547766 | Varanasi</p>
 </footer>
 
 <script>
     const MY_PHONE = "919123547766"; 
-    const PASS = "shop123";
+    const ADMIN_PASS = "shop123";
+    const isSunday = (new Date().getDay() === 0);
 
-    const today = new Date();
-    const isSunday = (today.getDay() === 0);
-
-    const initialData = [
-        { id: 1, name: "White Chicken", old: 220, price: 190, img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/white%20chicken.jpg" },
-        { id: 2, name: "Red Chicken", old: 320, price: 280, img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/Red%20chicken.png" },
-        { id: 3, name: "Fresh Farm Eggs", old: 10, price: 8, img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/Brown-eggs.jpg" }
-    ];
-
-    let items = JSON.parse(localStorage.getItem('shop_v5')) || initialData;
-    let sunOffer = localStorage.getItem('sun_off_v5') || "Sunday Special: 2kg Chicken par 6 Eggs FREE! 🐔🥚";
+    // YAHAN HAIN AAPKE ITEMS LIST
+    let db = JSON.parse(localStorage.getItem('dcs_master_final_v2')) || {
+        items: [
+            { name: "White Chicken", old: 220, price: 190, img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/white%20chicken.jpg" },
+            { name: "Red Chicken", old: 320, price: 280, img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/Red%20chicken.png" },
+            { name: "Fresh Farm Eggs", old: 10, price: 8, img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/Brown-eggs.jpg" }
+        ],
+        sunOffer: "Sunday Special: 2kg Chicken par 6 Eggs FREE! 🐔🥚",
+        photo: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/white%20chicken.jpg",
+        video: ""
+    };
 
     function render() {
-        document.getElementById('live-offer').innerText = isSunday ? sunOffer : "Daily Fresh Chicken Available! Best Rates in Varanasi.";
-        
+        document.getElementById('live-offer').innerText = isSunday ? db.sunOffer : "Daily Fresh Chicken | Quality You Can Trust";
+        document.getElementById('modal-photo').src = db.photo;
+        document.getElementById('modal-video').src = db.video;
+
         const grid = document.getElementById('display-grid');
         const adminList = document.getElementById('admin-list');
         grid.innerHTML = ""; adminList.innerHTML = "";
 
-        items.forEach((item, index) => {
-            let msg = isSunday ? `Sunday Special Offer ke saath मुझे ${item.name} order karna hai.` : `Mujhe fresh ${item.name} order karna hai.`;
-            const waLink = `https://wa.me/${MY_PHONE}?text=${encodeURIComponent('नमस्ते! ' + msg + '\nरेट: ₹' + item.price)}`;
-
+        db.items.forEach((item, index) => {
+            // Customer Side
+            let waMsg = encodeURIComponent(`नमस्ते! मुझे ${item.name} चाहिए। रेट: ₹${item.price}`);
             grid.innerHTML += `
                 <div class="card">
                     ${isSunday ? '<div class="sunday-badge">SUNDAY धमाका</div>' : ''}
-                    <img src="${item.img}">
-                    <h3 style="margin-top:10px;">${item.name}</h3>
-                    <p style="margin:5px 0;"><span style="text-decoration:line-through; color:gray;">₹${item.old}</span> <b style="color:red; font-size:1.6rem;">₹${item.price}</b></p>
-                    <a href="${waLink}" class="btn-whatsapp" target="_blank">Order on WhatsApp</a>
+                    <img src="${item.img}" onerror="this.src='https://via.placeholder.com/250'">
+                    <h3>${item.name}</h3>
+                    <p><span style="text-decoration:line-through; color:gray;">₹${item.old}</span> <b style="color:red; font-size:1.6rem;">₹${item.price}</b></p>
+                    <a href="https://wa.me/${MY_PHONE}?text=${waMsg}" class="btn-whatsapp" target="_blank">Order on WhatsApp</a>
                 </div>`;
 
+            // Admin Side
             adminList.innerHTML += `
-                <div style="padding:8px; border-bottom:1px solid #eee;">
-                    <b>${item.name}</b>: <input type="number" value="${item.old}" onchange="update(${index}, 'old', this.value)" style="width:55px;">
-                    <input type="number" value="${item.price}" onchange="update(${index}, 'price', this.value)" style="width:55px;">
+                <div style="padding:10px; border-bottom:1px solid #eee; display:flex; gap:10px; align-items:center;">
+                    <span style="width:100px; font-weight:bold;">${item.name}</span>
+                    <input type="number" value="${item.old}" onchange="updateRate(${index}, 'old', this.value)" style="width:60px;">
+                    <input type="number" value="${item.price}" onchange="updateRate(${index}, 'price', this.value)" style="width:60px;">
+                    <button onclick="deleteItem(${index})" class="btn-admin btn-del">Del</button>
                 </div>`;
         });
     }
 
-    function update(i, field, val) { items[i][field] = val; localStorage.setItem('shop_v5', JSON.stringify(items)); render(); }
-    function saveOffer() { sunOffer = document.getElementById('offer-input').value; localStorage.setItem('sun_off_v5', sunOffer); render(); alert("Offer Updated!"); }
-    
+    // Modal & Admin functions
+    function openModal() { document.getElementById('shopModal').style.display = "block"; }
+    function closeModal() { document.getElementById('shopModal').style.display = "none"; }
     function checkPass() {
-        if(document.getElementById('pass').value === PASS) {
+        if(document.getElementById('pass').value === ADMIN_PASS) {
             document.getElementById('controls').style.display = "block";
             document.getElementById('login-area').style.display = "none";
+            document.getElementById('edit-sun-offer').value = db.sunOffer;
+            document.getElementById('edit-photo').value = db.photo;
+            document.getElementById('edit-video').value = db.video;
             render();
-        } else { alert("Galat Password!"); }
+        } else { alert("Wrong Password!"); }
     }
-
+    function updateRate(i, f, v) { db.items[i][f] = v; save(); }
+    function deleteItem(i) { if(confirm("Kya aap ise list se hatana chahte hain?")) { db.items.splice(i, 1); save(); } }
+    function addItem() {
+        let n = document.getElementById('new-name').value;
+        let o = document.getElementById('new-old').value;
+        let p = document.getElementById('new-price').value;
+        let img = document.getElementById('new-img').value;
+        if(n && p) { db.items.push({name:n, old:o, price:p, img:img}); save(); alert("Item Add Ho Gaya!"); }
+    }
+    function saveSettings() {
+        db.sunOffer = document.getElementById('edit-sun-offer').value;
+        db.photo = document.getElementById('edit-photo').value;
+        db.video = document.getElementById('edit-video').value;
+        save(); alert("Settings Saved!");
+    }
+    function save() { localStorage.setItem('dcs_master_final_v2', JSON.stringify(db)); render(); }
     window.onload = render;
 </script>
 </body>
