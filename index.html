@@ -123,10 +123,32 @@
         const SECRET_KEY = "shop123"; // Aapka Password
 
         let defaultItems = [
-            { id: 1, name: "White Chicken", oldPrice: 220, price: 190, unit: "kg", img: "1000001305.jpg" },
-            { id: 2, name: "Desi Red Rooster", oldPrice: 320, price: 280, unit: "kg", img: "1000001306.png" },
-            { id: 3, name: "Fresh Farm Eggs", oldPrice: 10, price: 8, unit: "Piece", img: "image_generation_content_1.png" }
-        ];
+    { 
+        id: 1, 
+        name: "White Chicken", 
+        oldPrice: 220, 
+        price: 190, 
+        unit: "kg", 
+        img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/white%20chicken.jpg" 
+    },
+    { 
+        id: 2, 
+        name: "Desi Red Rooster", 
+        oldPrice: 320, 
+        price: 280, 
+        unit: "kg", 
+        img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/Red%20chicken.png" 
+    },
+    { 
+        id: 3, 
+        name: "Fresh Farm Eggs", 
+        oldPrice: 10, 
+        price: 8, 
+        unit: "Piece", 
+        img: "https://raw.githubusercontent.com/Git5678-nxm/mychickenshop/main/Brown-eggs.jpg" 
+    }
+];
+
 
         let items = JSON.parse(localStorage.getItem('dcs_secure_v1')) || defaultItems;
 
